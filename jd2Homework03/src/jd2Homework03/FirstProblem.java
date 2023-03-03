@@ -18,21 +18,19 @@ public class FirstProblem {
 	public static void initializeGame() {
 		System.out.println("\nInitializing " + ++whichGame + ". Game ");
 
-		
 		System.out.println("which player");
 		Scanner scanner = new Scanner(System.in);
 		whichPlayer = scanner.nextInt();
-		while (whichPlayer > records.length || 1 > whichPlayer) {
-			System.out.println("can be played with at least 1 person at most 5, try again");
-			whichPlayer = scanner.nextInt();
-		}
 
-		//assign player
+		if ((whichGame > records.length || whichPlayer > records.length)) {
+			extandRecordTable();
+		}
+		// assign player
 		records[whichPlayer - 1][0] = whichPlayer;
 
 		Random random = new Random();
 		randomNumber = random.nextInt(100);
-		
+
 		System.out.println("\n Enter a number from 1-100 " + randomNumber);
 	}
 
@@ -52,23 +50,23 @@ public class FirstProblem {
 			} else if (randomNumber == number) {
 				System.out.println("Bingooo  " + randomNumber);
 
-				//assign score
+				// assign score
 				records[whichPlayer - 1][whichGame] = ++count;
 
 				showRecordTable();
-				
-				if (whichGame+1 < records.length || whichGame+1<records[0].length) {
-					initializeGame();
-					count = 0;
-				}else
-					break;
+
+				if (whichGame + 1 > records.length || whichPlayer > records.length) {
+					extandRecordTable();
+				}
+				initializeGame();
+				count = 0;
 
 			}
 
 		} while (true);
 
 	}
-	
+
 	private static void showRecordTable() {
 		System.out.println("Record Table");
 		System.out.println("Player   Scores");
@@ -79,6 +77,17 @@ public class FirstProblem {
 			}
 			System.out.println();
 		}
+	}
+
+	private static void extandRecordTable() {
+		int[][] copyRecords = new int[records.length + 5][records[0].length + 5];
+
+		for (int i = 0; i < records.length; i++) {
+			for (int j = 0; j < records[i].length; j++) {
+				copyRecords[i][j] = records[i][j];
+			}
+		}
+		records = copyRecords;
 	}
 
 }
