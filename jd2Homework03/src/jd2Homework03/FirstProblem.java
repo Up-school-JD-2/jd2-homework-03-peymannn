@@ -1,5 +1,6 @@
 package jd2Homework03;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -71,9 +72,10 @@ public class FirstProblem {
 		System.out.println("Record Table");
 		System.out.println("Player   Scores");
 		for (int i = 0; i < records.length; i++) {
-			System.out.print("   " + records[i][0] + "   ");
+			
+			System.out.printf("   %02d   ",records[i][0]);
 			for (int j = 1; j < records[i].length; j++) {
-				System.out.print("   " + records[i][j]);
+				System.out.printf("   %02d", records[i][j]);				
 			}
 			System.out.println();
 		}
@@ -82,11 +84,11 @@ public class FirstProblem {
 	private static void extandRecordTable() {
 		int[][] copyRecords = new int[records.length + 5][records[0].length + 5];
 
+		// 2D dizi kopyalama işlemi
 		for (int i = 0; i < records.length; i++) {
-			for (int j = 0; j < records[i].length; j++) {
-				copyRecords[i][j] = records[i][j];
-			}
+			System.arraycopy(records[i], 0, copyRecords[i], 0, records[i].length);
 		}
+
 		records = copyRecords;
 	}
 
