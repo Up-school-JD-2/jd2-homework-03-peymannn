@@ -72,17 +72,17 @@ public class FirstProblem {
 		System.out.println("Record Table");
 		System.out.println("Player   Scores");
 		for (int i = 0; i < records.length; i++) {
-			
-			System.out.printf("   %02d   ",records[i][0]);
+
+			System.out.printf("   %02d   ", records[i][0]);
 			for (int j = 1; j < records[i].length; j++) {
-				System.out.printf("   %02d", records[i][j]);				
+				System.out.printf("   %02d", records[i][j]);
 			}
 			System.out.println();
 		}
 	}
 
 	private static void extandRecordTable() {
-		int[][] copyRecords = new int[records.length + 5][records[0].length + 5];
+		int[][] copyRecords = new int[records.length + whichPlayer][records[0].length + 5];
 
 		// 2D dizi kopyalama işlemi
 		for (int i = 0; i < records.length; i++) {
